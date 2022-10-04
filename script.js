@@ -1,7 +1,3 @@
-window.onload = function () {
-
-}
-
 const btnColor = document.getElementById('button-random-color');
 const cores = document.getElementsByClassName('color');
 const body = document.getElementsByTagName('body')[0]
@@ -18,16 +14,11 @@ function geraCores() {
 }
 geraCores();
 
+
 // requisito 5
-for (let i = 1; i < cores.length; i += 1) {
-    const cor = cores[i]
-    cor.addEventListener('click', function (event) {
-        console.log(event.target.style);
-    })
-}
 
-// requisito 6
 
+// requisito 6 e 7
 function geraQuadro() {
     const board = document.createElement('section');
     board.id = 'pixel-board';
@@ -42,3 +33,18 @@ function geraQuadro() {
 }
 
 geraQuadro();
+
+// requisito 9
+
+function selecionaCor() {
+    for (let i = 0; i < cores.length; i += 1) {
+        const cor = cores[i]
+        cor.addEventListener('click', function (event) {
+            const selected = document.querySelector('.selected');
+            selected.classList.remove('selected');
+            event.target.classList.add('selected');
+        })
+    }
+}
+
+selecionaCor();
