@@ -9,24 +9,13 @@
 
 .color {
   border: 1px solid black;
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
 }
 
-.color:first-of-type {
-  background-color: black;
-}
-
-.color:nth-of-type(2) {
-  background-color: rgb(255, 0, 0);
-}
-
-.color:nth-of-type(3) {
-  background-color: rgb(255, 255, 0);
-}
-
-.color:last-of-type {
-  background-color: rgb(0, 0, 255);
+#clear-board{
+    margin: 0.5em 0;
+    
 }
 
 #pixel-board {
