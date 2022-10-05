@@ -33,6 +33,11 @@ body {
   height: 35px;
 }
 
+#board-size {
+  margin-top: 1em;
+  width: 40px;
+}
+
 #clear-board {
   background-color: rgb(157, 172, 180);
 }

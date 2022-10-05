@@ -1,39 +1,21 @@
-window.onload = function () {
-  if (localStorage.getItem('colorPalette') === null) {
-    storageColors(colorList);
-    for (let i = 0; i < colors.length; i += 1) {
-      const cor = colors[i];
-      cor.style.backgroundColor = colorList[i];
-    }
-  } else {
-    const newList = JSON.parse(localStorage.colorPalette);
-
-    for (let i = 0; i < colors.length; i += 1) {
-      const color = colors[i];
-      if (i === 0) {
-        color.style.backgroundColor = colorList[i];
-      }
-      color.style.backgroundColor = newList[i - 1];
-    }
-  }
-};
-
-// variáveis locais
+// variáveis globais
 const btnColor = document.getElementById('button-random-color');
 const btnClear = document.getElementById('clear-board');
 const colors = document.getElementsByClassName('color');
 const body = document.getElementsByTagName('body')[0];
 const colorList = ['rgb(0, 0, 0)', 'rgb(255, 0, 0)', 'rgb(255, 255, 0)', 'rgb(0, 0, 255)'];
 let brush = colorList[0];
+let numPixels = 5;
+const board = document.createElement('section');
+board.id = 'pixel-board';
 
 function storageColors(list) {
   localStorage.setItem('colorPalette', JSON.stringify(list));
-  console.log(localStorage.colorPalette);
 }
 
-// function storagePixels(pixel) {
-//   localStorage.setItem('pixelBoard', JSON.stringify(pixel));
-// }
+function storagePixels(pixels) {
+  localStorage.setItem('pixelBoard', pixels);
+}
 
 // requisito 4
 function geraCores() {
@@ -49,21 +31,38 @@ function geraCores() {
 
 btnColor.addEventListener('click', geraCores);
 
-// requisito 6 e 7
-function createBoard() {
-  const board = document.createElement('section');
-  board.id = 'pixel-board';
-  const numPixels = 25;
+// requisito 5
 
-  for (let i = 0; i < numPixels; i += 1) {
+if (localStorage.getItem('colorPalette') === null) {
+  storageColors(colorList);
+  for (let i = 0; i < colors.length; i += 1) {
+    const cor = colors[i];
+    cor.style.backgroundColor = colorList[i];
+  }
+} else {
+  const newList = JSON.parse(localStorage.colorPalette);
+
+  for (let i = 0; i < colors.length; i += 1) {
+    const color = colors[i];
+    if (i === 0) {
+      color.style.backgroundColor = colorList[i];
+    }
+    color.style.backgroundColor = newList[i - 1];
+  }
+}
+
+// requisito 6 e 7
+function createBoard(pixels) {
+  board.innerHTML = '';
+  const boardArea = pixels * pixels;
+  for (let i = 0; i < boardArea; i += 1) {
     const pixel = document.createElement('div');
     pixel.className = 'pixel';
     board.appendChild(pixel);
   }
   body.appendChild(board);
 }
-
-createBoard();
+createBoard(numPixels);
 const pixels = document.getElementsByClassName('pixel');
 
 // requisito 9
@@ -81,8 +80,11 @@ for (let i = 0; i < colors.length; i += 1) {
 
 // requisito 10
 function paintPixels(event) {
+  const saveboard = [];
   const pixelSelecionado = event.target;
   pixelSelecionado.style.backgroundColor = brush;
+  saveboard.push(board);
+  storagePixels(saveboard[0].innerHTML);
 }
 
 for (let i = 0; i < pixels.length; i += 1) {
@@ -92,10 +94,35 @@ for (let i = 0; i < pixels.length; i += 1) {
 
 // requisito 11
 function clearBoard() {
-  for (const pixel of pixels) {
+  for (let i = 0; i < pixels.length; i += 1) {
+    const pixel = pixels[i];
     pixel.style.backgroundColor = 'rgb(255, 255, 255)';
+    storagePixels(board.innerHTML);
   }
 }
 btnClear.addEventListener('click', clearBoard);
 
 // requisito 12
+if (localStorage.getItem('pixelBoard')) {
+  board.innerHTML = '';
+  board.innerHTML = localStorage.pixelBoard;
+  for (let i = 0; i < pixels.length; i += 1) {
+    const pixel = pixels[i];
+    pixel.addEventListener('click', paintPixels);
+  }
+}
+
+// requisito 13 e 14
+const boardSize = document.getElementById('board-size');
+const boardSizeBtn = document.getElementById('generate-board');
+
+function changeSize() {
+  numPixels = boardSize.value;
+  if (boardSize.value === '') {
+    alert('Board inválido!');
+  } else {
+    createBoard(numPixels);
+  }
+}
+
+boardSizeBtn.addEventListener('click', changeSize);
