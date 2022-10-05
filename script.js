@@ -20,6 +20,7 @@ window.onload = function () {
 
 // variáveis locais
 const btnColor = document.getElementById('button-random-color');
+const btnClear = document.getElementById('clear-board');
 const colors = document.getElementsByClassName('color');
 const body = document.getElementsByTagName('body')[0]
 const colorList = ['rgb(0, 0, 0)', 'rgb(255, 0, 0)', 'rgb(255, 255, 0)', 'rgb(0, 0, 255)'];
@@ -83,3 +84,13 @@ for (let i = 0; i < pixels.length; i += 1) {
     const pixel = pixels[i]
     pixel.addEventListener('click', paintPixels)
 }
+
+// requisito 11
+
+function clearBoard(){
+    for (const pixel of pixels) {
+        pixel.style.backgroundColor = 'rgb(255, 255, 255)'
+    }
+}
+
+btnClear.addEventListener('click', clearBoard)
