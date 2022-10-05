@@ -13,21 +13,20 @@
   height: 35px;
 }
 
-#clear-board{
-    margin: 0.5em 0;
-    
+#clear-board {
+  margin: 0.5em 0;
 }
 
 #pixel-board {
-    margin: 0 41%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  margin: 0 41%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .pixel {
   border: 1px solid black;
   width: 40px;
   height: 40px;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
 }
