@@ -5,7 +5,7 @@ const colors = document.getElementsByClassName('color');
 const body = document.getElementsByTagName('body')[0];
 const colorList = ['rgb(0, 0, 0)', 'rgb(255, 0, 0)', 'rgb(255, 255, 0)', 'rgb(0, 0, 255)'];
 let brush = colorList[0];
-let numPixels = 5;
+const numPixels = 5;
 const board = document.createElement('section');
 board.id = 'pixel-board';
 
@@ -125,11 +125,16 @@ const boardSize = document.getElementById('board-size');
 const boardSizeBtn = document.getElementById('generate-board');
 
 function changeSize() {
-  numPixels = boardSize.value;
   if (boardSize.value === '') {
     alert('Board inválido!');
+  } else if (boardSize.value < 5) {
+    boardSize.value = 5;
+    createBoard(boardSize.value);
+  } else if (boardSize.value > 50) {
+    boardSize.value = 50;
+    createBoard(boardSize.value);
   } else {
-    createBoard(numPixels);
+    createBoard(boardSize.value);
   }
 }
 
