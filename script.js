@@ -17,11 +17,19 @@ function storagePixels(pixels) {
   localStorage.setItem('pixelBoard', pixels);
 }
 
+function geraCorAleatoria() {
+  const a = Math.floor(Math.random() * 255);
+  const b = Math.floor(Math.random() * 255);
+  const c = Math.floor(Math.random() * 255);
+
+  return `rgb(${a}, ${b}, ${c})`;
+}
+
 // requisito 4
-function geraCores() {
+function geraPaletaAleatoria() {
   const coresGeradas = [];
   for (let i = 1; i < colors.length; i += 1) {
-    const corAleatoria = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+    const corAleatoria = geraCorAleatoria();
     const corAtual = colors[i];
     coresGeradas.push(corAleatoria);
     corAtual.style.backgroundColor = corAleatoria;
@@ -29,7 +37,7 @@ function geraCores() {
   storageColors(coresGeradas);
 }
 
-btnColor.addEventListener('click', geraCores);
+btnColor.addEventListener('click', geraPaletaAleatoria);
 
 // requisito 5
 
