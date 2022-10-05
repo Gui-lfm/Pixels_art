@@ -28,18 +28,18 @@ let brush = colorList[0];
 
 function storageColors(list) {
   localStorage.setItem('colorPalette', JSON.stringify(list));
+  console.log(localStorage.colorPalette);
 }
 
-function storagePixels(pixel) {
-  localStorage.setItem('pixelBoard', JSON.stringify(pixel));
-}
+// function storagePixels(pixel) {
+//   localStorage.setItem('pixelBoard', JSON.stringify(pixel));
+// }
 
 // requisito 4
 function geraCores() {
   const coresGeradas = [];
   for (let i = 1; i < colors.length; i += 1) {
-    const random = Math.floor(Math.random() * 255);
-    const corAleatoria = `rgb(${random}, ${random}, ${random})`;
+    const corAleatoria = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
     const corAtual = colors[i];
     coresGeradas.push(corAleatoria);
     corAtual.style.backgroundColor = corAleatoria;

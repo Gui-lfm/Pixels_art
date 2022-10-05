@@ -1,5 +1,25 @@
-#title {
+body {
   text-align: center;
+  font-family: Montserrat, sans-serif;
+}
+
+/* paleta de cores e botões */
+#button-random-color , #clear-board {
+  padding: 1em;
+  min-width: 140px;
+  border-radius: 10px;
+  border: none;
+  margin: 1em 0;
+  cursor: pointer;
+  transition: 0.75s;
+}
+
+#button-random-color {
+  background-color: rgb(47, 193, 140);
+}
+
+#button-random-color:hover {
+  background-color: rgb(33, 136, 98);
 }
 
 #color-palette {
@@ -14,9 +34,15 @@
 }
 
 #clear-board {
-  margin: 0.5em 0;
+  background-color: rgb(157, 172, 180);
 }
 
+#clear-board:hover {
+  background-color: rgb(57, 62, 65);
+  color: white;
+}
+
+/* quadro */
 #pixel-board {
   margin: 0 41%;
   display: flex;
