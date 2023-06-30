@@ -40,7 +40,6 @@ function geraPaletaAleatoria() {
 btnColor.addEventListener('click', geraPaletaAleatoria);
 
 // requisito 5
-
 if (localStorage.getItem('colorPalette') === null) {
   storageColors(colorList);
   for (let i = 0; i < colors.length; i += 1) {
